@@ -16,6 +16,8 @@ function createGrid(size){
         // set proportions for each square
         squareDiv.style.width = `${squareSize}px`;
         squareDiv.style.height = `${squareSize}px`;
+
+        
     
         gridContainer.appendChild(squareDiv);
     };
@@ -24,6 +26,8 @@ function createGrid(size){
 
     
     hover(squares);
+
+    draw(squares);
 }
 
 function hover(squares){
@@ -39,6 +43,38 @@ function hover(squares){
         square.classList.remove("hoverState");
     });
   });   
+};
+
+function draw(squares){
+    squares.forEach(square =>{
+        
+        square.addEventListener("mouseup", (event) => {
+            switch (event.button) {
+              case 0: { // LEFT CLICK — DRAW
+                let currentOpacity = parseFloat(square.style.opacity) || 0.1;
+          
+                currentOpacity = Math.min(currentOpacity + 0.1, 1);
+                square.style.backgroundColor = "black";
+                square.style.opacity = currentOpacity;
+          
+                break;
+              }
+          
+              case 1: { // MIDDLE CLICK — ERASE
+                let currentOpacity = parseFloat(square.style.opacity) || 0.1;
+          
+                currentOpacity = Math.max(currentOpacity - 0.1, 0.1); // never below 0.1
+                square.style.backgroundColor = "black";
+                square.style.opacity = currentOpacity;
+          
+                break;
+              }
+          
+              default:
+                break; // Ignore anything that isn’t sanctioned input
+            }
+          });
+    });
 };
 
 

@@ -20,10 +20,10 @@ html, body {
 
 .square {
   border: 1px solid red;
-  background-color: white;
+  
   flex-shrink: 0; /* don't allow shrinking */
 }
 
 .hoverState {
-  background-color: lightcoral;
+  background-color: rgb(240, 82, 82);
 }
